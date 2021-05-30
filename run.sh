@@ -20,13 +20,13 @@ if [ ! -d /var/www/pimcore ]; then
   mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'pimcore_LEGO'@'%' WITH GRANT OPTION;"
   
   # setup database 
-  mysql -u pimcore_LEGO -psecretpassword -e "CREATE DATABASE pimcore_LEGO_pimcore charset=utf8;"; 
-  mysql -u pimcore_LEGO -psecretpassword pimcore_LEGO_pimcore < /var/www/pimcore/modules/install/mysql/install.sql
-  mysql -u pimcore_LEGO -psecretpassword pimcore_LEGO_pimcore < /var/www/website/dump/data.sql
+  mysql -u pimcore_L -psecretpassword -e "CREATE DATABASE pimcore_LEGO_pimcore charset=utf8;"; 
+  mysql -u pimcore_L -psecretpassword pimcore_L_pimcore < /var/www/pimcore/modules/install/mysql/install.sql
+  mysql -u pimcore_L -psecretpassword pimcore_L_pimcore < /var/www/website/dump/data.sql
   
   # 'admin' password is 'demo' 
-  mysql -u pimcore_LEGO -psecretpassword -D pimcore_LEGO_pimcore -e "UPDATE users SET password = '\$2y\$10\$P8w92BSI2qp4q0VHUFe9nutv0A3MGhnyr.e43p4hfhrfcy1zZqyMO' WHERE name = 'admin'"  
-  mysql -u pimcore_LEGO -psecretpassword -D pimcore_LEGO_pimcore -e "UPDATE users SET id = '0' WHERE name = 'system'"
+  mysql -u pimcore_L -psecretpassword -D pimcore_L_pimcore -e "UPDATE users SET password = '\$2y\$10\$P8w92BSI2qp4q0VHUFe9nutv0A3MGhnyr.e43p4hfhrfcy1zZqyMO' WHERE name = 'admin'"  
+  mysql -u pimcore_L -psecretpassword -D pimcore_L_pimcore -e "UPDATE users SET id = '0' WHERE name = 'system'"
   
   sudo -u www-data mv /var/www/website/var/config/system.xml.template /var/www/website/var/config/system.xml
   sudo -u www-data cp /tmp/cache.xml /var/www/website/var/config/cache.xml
